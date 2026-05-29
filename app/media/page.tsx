@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { articles } from "@/data/articles";
+import Link from "next/link";
 
 type Lang = "ru" | "en" | "fr";
 
@@ -150,11 +151,11 @@ export default function MediaPage() {
           </a>
 
           <nav className="nav">
-            <a href="/ma">{t.nav[0]}</a>
-            <a href="/strategy">{t.nav[1]}</a>
-            <a href="/ia">{t.nav[2]}</a>
-            <a href="/team">{t.nav[3]}</a>
-            <a href="/media">{t.nav[4]}</a>
+            <link href="/ma">{t.nav[0]}</link>
+            <link href="/strategy">{t.nav[1]}</link>
+            <link href="/ia">{t.nav[2]}</link>
+            <link href="/team">{t.nav[3]}</link>
+            <link href="/media">{t.nav[4]}</link>
           </nav>
 
           <div className="langs">
@@ -344,14 +345,17 @@ export default function MediaPage() {
         }
 
         .header {
-          position: fixed;
-          inset: 0 0 auto 0;
-          z-index: 50;
-          padding: 12px 0;
-          background: rgba(5, 6, 13, 0.7);
-          backdrop-filter: blur(22px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 10px 0;
+  background: rgba(5, 6, 13, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transform: translateZ(0);
+  will-change: transform;
+}
 
         .headerInner {
           display: flex;

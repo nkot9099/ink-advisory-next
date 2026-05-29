@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type Lang = "ru" | "en" | "fr";
 
@@ -230,16 +231,16 @@ export default function TeamPage() {
     <>
       <header className="header">
         <div className="container headerInner">
-          <a className="logo" href="/">
+          <link className="logo" href="/">
             <img src="/images/logo.svg" alt="ink Advisory" />
-          </a>
+          </link>
 
           <nav className="nav">
-            <a href="/ma">{t.nav[0]}</a>
-            <a href="/strategy">{t.nav[1]}</a>
-            <a href="/ia">{t.nav[2]}</a>
-            <a href="/team">{t.nav[3]}</a>
-            <a href="/media">{t.nav[4]}</a>
+            <link href="/ma">{t.nav[0]}</link>
+            <link href="/strategy">{t.nav[1]}</link>
+            <link href="/ia">{t.nav[2]}</link>
+            <link href="/team">{t.nav[3]}</link>
+            <link href="/media">{t.nav[4]}</link>
           </nav>
 
           <div className="langs">

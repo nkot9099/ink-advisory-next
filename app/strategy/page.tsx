@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type Lang = "ru" | "en" | "fr";
 
@@ -163,15 +164,15 @@ export default function StrategyPage() {
     <>
       <header className="header">
         <div className="container headerInner">
-          <a className="logo" href="/">
+          <link className="logo" href="/">
             <img src="/images/logo.svg" alt="ink Advisory" />
-          </a>
+          </link>
           <nav className="nav">
-            <a href="/ma">{t.nav[0]}</a>
-            <a href="/strategy">{t.nav[1]}</a>
-            <a href="/ia">{t.nav[2]}</a>
-            <a href="/team">{t.nav[3]}</a>
-            <a href="/media">{t.nav[4]}</a>
+            <link href="/ma">{t.nav[0]}</link>
+            <link href="/strategy">{t.nav[1]}</link>
+            <link href="/ia">{t.nav[2]}</link>
+            <link href="/team">{t.nav[3]}</link>
+            <link href="/media">{t.nav[4]}</link>
           </nav>
           <div className="langs">
             {(["ru", "en", "fr"] as Lang[]).map((l) => (
@@ -282,7 +283,18 @@ export default function StrategyPage() {
         :root{--gold:#d89529;--bg:#05060d;--soft:#0b1020;--card:#10182b;--muted:rgba(255,255,255,.68)}
         *{box-sizing:border-box} html,body{margin:0;font-family:Montserrat,sans-serif;background:var(--bg);color:white;overflow-x:hidden;scroll-behavior:smooth}
         .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
-        .header{position:fixed;inset:0 0 auto 0;z-index:50;padding:12px 0;background:rgba(5,6,13,.7);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.06)}
+       .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 10px 0;
+  background: rgba(5, 6, 13, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transform: translateZ(0);
+  will-change: transform;
+}
         .headerInner{display:flex;align-items:center;justify-content:space-between;gap:28px}.logo img{width:76px}.nav{display:flex;gap:28px}.nav a{color:rgba(255,255,255,.82);text-decoration:none;font-size:13px}.nav a:hover{color:var(--gold)}
         .langs{display:flex;gap:6px}.langs button{background:rgba(255,255,255,.04);color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.14);padding:7px 9px;font-size:11px;font-weight:600;cursor:pointer}.langs .active,.langs button:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
         .hero{min-height:82svh;display:flex;align-items:center;background:linear-gradient(90deg,rgba(5,6,13,.96),rgba(15,8,66,.86),rgba(5,6,13,.94)),url("/images/background_strategy.svg") center/cover no-repeat;position:relative}
