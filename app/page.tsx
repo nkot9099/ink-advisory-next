@@ -154,37 +154,50 @@ const dict = {
 
 export default function HomePage() {
   const [lang, setLang] = useState<Lang>("ru");
+  const [menuOpen, setMenuOpen] = useState(false);
   const t = dict[lang];
 
   return (
     <>
-      <header className="header">
-        <div className="container headerInner">
-          <Link className="logo" href="/">
-            <img src="/images/logo.svg" alt="ink Advisory" />
-          </Link>
+<header className="header">
+  <div className="container headerInner">
+    <Link className="logo" href="/">
+      <img src="/images/logo.svg" alt="ink Advisory" />
+    </Link>
 
-          <nav className="nav">
-            <Link href="/ma">{t.nav[0]}</Link>
-            <Link href="/strategy">{t.nav[1]}</Link>
-            <Link href="/ia">{t.nav[2]}</Link>
-            <Link href="/team">{t.nav[3]}</Link>
-            <Link href="/media">{t.nav[4]}</Link>
-          </nav>
+    <nav className={menuOpen ? "nav navOpen" : "nav"}>
+      <Link href="/ma" onClick={() => setMenuOpen(false)}>{t.nav[0]}</Link>
+      <Link href="/strategy" onClick={() => setMenuOpen(false)}>{t.nav[1]}</Link>
+      <Link href="/ia" onClick={() => setMenuOpen(false)}>{t.nav[2]}</Link>
+      <Link href="/team" onClick={() => setMenuOpen(false)}>{t.nav[3]}</Link>
+      <Link href="/media" onClick={() => setMenuOpen(false)}>{t.nav[4]}</Link>
+    </nav>
 
-          <div className="langs">
-            {(["ru", "en", "fr"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={lang === l ? "active" : ""}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
+    <div className="headerRight">
+      <div className="langs">
+        {(["ru", "en", "fr"] as Lang[]).map((l) => (
+          <button
+            key={l}
+            onClick={() => setLang(l)}
+            className={lang === l ? "active" : ""}
+          >
+            {l.toUpperCase()}
+          </button>
+        ))}
+      </div>
+
+      <button
+        className={menuOpen ? "burger burgerOpen" : "burger"}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Open menu"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+    </div>
+  </div>
+</header>
 
       <main>
         <section className="hero">
@@ -459,6 +472,42 @@ export default function HomePage() {
           color: var(--bg);
           border-color: var(--gold);
         }
+
+        .headerRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.burger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(216, 149, 41, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  padding: 9px;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background: white;
+  margin: 6px 0;
+  transition: 0.25s ease;
+}
+
+.burgerOpen span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
         .hero {
           position: relative;
@@ -828,22 +877,46 @@ export default function HomePage() {
           text-decoration: underline;
         }
 
-        @media (max-width: 1080px) {
-          .nav {
-            display: none;
-          }
+ @media (max-width: 1080px) {
+  .burger {
+    display: block;
+  }
 
-          .heroGrid,
-          .aboutGrid,
-          .cards,
-          .contactCard {
-            grid-template-columns: 1fr;
-          }
+  .nav {
+    position: fixed;
+    top: 86px;
+    left: 14px;
+    right: 14px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 18px;
+    background: rgba(5, 6, 13, 0.98);
+    border: 1px solid rgba(216, 149, 41, 0.22);
+    z-index: 999;
+  }
 
-          .heroPanel {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
+  .nav.navOpen {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 15px 4px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .heroGrid,
+  .aboutGrid,
+  .cards,
+  .contactCard {
+    grid-template-columns: 1fr;
+  }
+
+  .heroPanel {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
         @media (max-width: 680px) {
           .container {
