@@ -141,16 +141,16 @@ export default function MAPage() {
     <>
       <header className="header">
         <div className="container headerInner">
-          <link className="logo" href="/">
+          <Link className="logo" href="/">
             <img src="/images/logo.svg" alt="ink Advisory" />
-          </link>
+          </Link>
 
           <nav className="nav">
-            <link href="/ma">{t.nav[0]}</link>
-            <link href="/strategy">{t.nav[1]}</link>
-            <link href="/ia">{t.nav[2]}</link>
-            <link href="/team">{t.nav[3]}</link>
-            <link href="/media">{t.nav[4]}</link>
+            <Link href="/ma">{t.nav[0]}</Link>
+            <Link href="/strategy">{t.nav[1]}</Link>
+            <Link href="/ia">{t.nav[2]}</Link>
+            <Link href="/team">{t.nav[3]}</Link>
+            <Link href="/media">{t.nav[4]}</Link>
           </nav>
 
           <div className="langs">
